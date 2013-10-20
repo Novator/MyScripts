@@ -29,7 +29,7 @@
 ## Push files from local to repository
 git add --all
 git commit -a -m "just a commit"
-git remote add origin https://github.com/Novator/MyScripts.git
+#git remote add origin https://github.com/Novator/MyScripts.git
 git push -u origin master
 
 ##Modify last commit
