@@ -1,0 +1,582 @@
+#!/bin/sh
+
+date
+
+modprobe iptable_nat
+modprobe ip_conntrack_ftp
+modprobe ip_nat_ftp
+
+#EXTINT=ens3
+#EXTINT=wlan0
+#EXTINT=ppp0
+#EXTINT=ppp0
+#EXTINT=wlx90916130238b
+#LOCINT=wlx90916130238b
+LOCINT=enp2s0
+#TUNINT=tun0
+#LOCINT=eth0
+#LOCINT=wlan0
+#EXTIP=185.111.219.236
+#ADMINIP=10.59.10.200
+#LOCNET=10.59.10.0/23
+LOCNET=192.168.0.0/16
+#TUNNET=10.8.0.0/24
+#MOONNET=176.59.0.0/16
+#VPSROBUXIP=185.111.219.236
+#MOONTUNIP=10.8.0.6
+
+#MAILRUPOP=94.100.180.74
+MAILRUNET1=94.100.0.0/16
+MAILRUNET2=217.69.139.0/24
+YARUNET1=87.250.0.0/16
+YARUNET2=77.88.55.0/24
+YARUNET3=213.180.204.0/24
+YARUNET4=77.88.21.0/24
+YARUNET5=77.88.44.242
+YARUNET6=77.88.55.88
+YARUNET7=37.9.64.225
+YAMONEY1=109.235.165.0/24
+YAMONEY2=185.71.78.0/16
+YAMONEY3=91.235.132.0/16
+YAMONEY4=62.76.205.0/24
+YAMONEY5=37.18.21.0/24
+OZON1=31.130.141.0/24
+OZON2=185.73.193.0/24
+OZON3=81.211.66.62
+OZON4=85.173.175.100
+SBER1=194.54.0.0/16
+SBER2=84.252.147.0/24
+SOLAR1=31.31.198.141
+DLINE1=103.136.70.96
+DLINE2=45.130.150.0/24
+DZEN1=62.217.160.0/24
+PERMRUNET=195.222.130.0/24
+POSTBANKIP=212.120.162.37
+KNUTOVNET1=144.76.183.0/24
+KNUTOVNET2=144.76.180.0/24
+KNUTOVNET3=194.117.250.0/24
+SANTA=78.47.38.238
+DOBROHOST1=89.208.34.145
+CKASSA=94.138.149.0/24
+SIPNETGATE=212.53.40.40
+SIPNETSTUN=212.53.35.244
+SIPNETVOICE=212.53.0.0/16
+#SIPNETVOICE1=212.53.35.0/24
+#SIPNETVOICE2=212.53.40.0/24
+SIPNET2=212.53.0.0/16
+USKIP=90.151.211.93
+SKYPENET=94.50.0.0/16
+MISSIP=224.0.0.251
+ICQNET1=64.12.0.0/16
+ICQNET2=205.188.0.0/16
+LORNET=178.248.233.6
+CHERNSETI=77.222.57.5
+OPENNET=217.65.3.21
+REVERSO=54.36.69.0/24
+DEEPL=172.65.0.0/16
+VKNET1=87.240.0.0/16
+VKNET2=93.186.0.0/16
+VKNET3=95.142.0.0/16
+VKNET4=45.136.0.0/16
+#VKNET5=185.226.0.0/16
+VKNET5=87.240.129.0/24
+VKNET6=87.240.137.0/24
+LENTA1=81.19.72.0/24
+BITINFO=104.21.5.177
+FACEBOOK1=31.13.72.0/24
+FACEBOOK2=157.240.194.0/24
+FACEBOOK3=185.60.216.0/24
+FACEBOOK4=157.240.205.0/24
+#TELE2PERM1=178.248.237.0/24
+TELE2PERM1=212.193.146.0/24
+TELE2PERM2=212.193.147.0/24
+TELE2PERM3=93.93.94.0/24
+TELE2PERM4=93.93.90.0/24
+TELE2PERM5=78.41.108.0/24
+TELE2PERM6=195.209.80.0/24
+TELE2PERM7=46.235.185.0/24
+TELE2PERM8=212.193.153.0/24
+REMIX1=140.82.121.0/24
+ENER1=193.36.41.0/24
+ENER2=185.170.2.0/24
+ENER3=185.17.9.0/24
+GDEPOS1=104.25.154.0/24
+GDEPOS2=104.25.107.0/24
+GDEPOS3=104.25.106.0/24
+GDEPOS4=172.67.80.113
+#GISMETEO1=185.134.0.0/16
+#GISMETEO1=95.181.182.0/24
+#GISMETEO1=199.68.197.246
+GISMETEO1=31.172.76.59
+GISMETEO2=81.211.66.61
+#GISMETEO2=178.154.202.0/24
+#GISMETEO2=217.151.230.128
+#GISMETEO2=37.9.38.38
+##GISMETEO3=178.250.0.0/16
+#GISMETEO3=92.60.184.0/24
+#GISMETEO3=31.172.76.0/24
+#GISMETEO4=91.238.108.0/24
+#GISMETEO5=81.211.66.61
+#GISMETEO4=217.20.175.0/24
+#GISMETEO5=172.67.150.0/24
+#GISMETEO6=104.21.95.0/24
+#GISMETEO7=104.21.82.0/24
+#GISMETEO8=172.67.179.0/24
+#GISMETEO8=172.67.179.132
+#GISMETEO9=185.134.203.0/24
+#GISMETEO8=185.134.201.0/24
+#GISMETEO9=185.134.202.0/24
+#185.134.201.5
+GLAVSU=89.108.74.227
+FLHUNT1=104.20.0.0/16
+FLHUNT2=104.22.0.0/16
+FLHUNT3=104.26.0.0/16
+FLHUNT4=172.66.41.0/24
+FLHUNT5=172.66.42.0/24
+#FLHUNT6=188.114.99.0/24
+ALINET1=62.128.0.0/16
+ALINET2=2.17.0.0/16
+ALINET3=198.11.0.0/16
+ALINET4=23.46.0.0/16
+ALINET5=47.246.0.0/16
+ALINET6=23.210.0.0/16
+ALINET7=205.204.0.0/16
+ALINET8=47.89.0.0/16
+ALINET9=104.73.0.0/16
+ALINET10=23.13.0.0/16
+ALINET11=188.43.0.0/16
+ALINET12=104.76.0.0/16
+ALINET13=95.163.0.0/16
+ALINET14=95.100.164.0/16
+ALINET15=2.16.0.0/16
+ALINET16=23.72.0.0/16
+ALINET17=104.75.0.0/16
+ALINET18=184.86.1.0/24
+ALINET19=184.86.61.0/24
+ALINET20=2.21.202.0/24
+ALINET21=23.52.29.0/24
+ALINET22=47.254.177.0/24
+ALINET23=185.137.235.0/24
+ALINET24=203.119.169.0/24
+ALINET25=184.31.15.0/24
+ALINET26=23.60.0.0/16
+ALINET27=23.61.0.0/16
+ALINET28=139.45.0.0/16
+ALINET29=94.158.209.0/24
+GOOGLE1=216.58.0.0/16
+GOOGLE2=74.125.0.0/16
+GOOGLE3=172.217.0.0/16
+GOOGLE4=216.239.0.0/16
+GOOGLE5=64.233.162.0/24
+GOOGLE6=173.194.73.0/24
+GOOGLE7=74.125.131.0/24
+GOOGLE8=142.251.1.0/24
+DUCKGO1=40.114.177.0/24
+DUCKGO2=40.81.94.0/24
+DUCKGO3=20.204.244.0/24
+DUCKGO4=20.204.245.0/24
+DUCKGO5=20.204.6.0/24
+ROBOTRENDS=185.22.63.213
+GITHUB1=140.82.0.0/16
+GITHUB2=185.199.111.0/24
+SOLIDITY=104.17.32.0/24
+BITBUCKET=18.234.32.0/24
+YOUTUBE1=209.85.233.0/24
+YOUTUBE2=64.233.0.0/16
+YOUTUBE3=85.112.0.0/16
+YOUTUBE4=104.237.189.0/24
+#YOUTUBE5=173.194.0.0/16
+YOUTUBE5=173.194.220.0/24
+YOUTUBE6=188.43.76.0/24
+YOUTUBE7=74.125.0.0/16
+YOUTUBE8=108.177.14.0/24
+YOUTUBE9=176.59.0.0/16
+YOUTUBE10=142.251.1.0/24
+YOUTUBE11=142.250.150.0/24
+YOUTUBE12=34.117.237.0/24
+#YOUTUBE13=212.193.156.0/24
+#YOUTUBE14=34.160.144.0/24
+YOUTUBE13=173.194.182.0/24
+YOUTUBE14=173.194.179.0/24
+YOUTUBE15=173.194.222.0/24
+YOUTUBE16=176.59.223.0/24
+YOUTUBE17=173.194.176.0/24
+YOUTUBE18=172.217.133.0/24
+YOUTUBE19=74.125.153.0/24
+YOUTUBE20=74.125.162.0/24
+YOUTUBE21=173.194.180.0/24
+YOUTUBE22=173.194.181.0/24
+YOUTUBE23=173.194.177.0/24
+
+DRUGVOKRUG=89.111.56.0/24
+#TRUDVSEM1=185.99.9.0/24
+#TRUDVSEM2=77.88.21.0/24
+TRUDVSEM1=87.250.250.0/24
+TRUDVSEM2=178.248.238.0/24
+HABR1=95.47.236.0/24
+#HABR2=95.213.0.0/16
+#HABR3=82.192.95.0/24
+#HABR4=104.26.12.0/24
+#HABR5=104.16.0.0/16
+#HABR6=178.248.233.0/24
+HABR6=95.47.173.0/24
+HABR7=178.248.237.0/24
+HABR8=51.89.30.0/24
+HABR9=178.248.233.0/24
+#HABR7=178.248.0.0/16
+#HABR8=51.89.30.0/24
+FLRU1=162.247.242.0/24
+FLRU2=92.53.68.0/24
+FLRU3=185.129.100.0/24
+WIKI1=91.198.174.0/24
+WIKI2=185.15.59.0/24
+TORSHINA=78.140.140.0/24
+FREENET=81.4.234.0/24
+INSTA=69.171.250.0/24
+AVITO1=185.89.12.0/24
+AVITO2=146.158.0.0/16
+AVITO3=91.238.108.0/24
+AVITO4=193.17.93.0/24
+AVITO5=176.114.124.0/24
+AVITO6=176.114.120.0/24
+PAYPAL=185.177.54.0/24
+JOTFORM1=104.23.133.0/24
+JOTFORM2=104.23.134.0/24
+JOTFORM3=35.207.90.0/24
+STACKOVER1=151.101.193.0/24
+AMALGAMA=195.54.214.0/24
+TELEG1=149.154.0.0/16
+TELEG2=158.160.225.186
+#TELEG3=35.162.0.0/16
+TELEG3=130.49.218.57
+TELEG4=91.108.0.0/16
+#TELEG5=52.89.0.0/16
+TELEG6=91.105.0.0/16
+#TELEGRA1=149.154.164.0/24
+TELEG7=147.125.130.50
+TELEG8=80.91.223.131
+TELEG9=147.125.130.22
+TELEG10=5.42.106.208
+TELEG11=185.84.156.0/24
+TELEG12=2.26.126.0/24
+BINANCE1=13.33.243.0/24
+ZENMATE1=84.239.49.0/24
+ZENMATE2=193.176.84.0/24
+ZENMATE3=149.154.165.0/24
+ZENMATE4=91.108.56.0/24
+ZENMATE5=149.154.165.0/24
+TXTEDITORCO=162.212.132.0/24
+#DATURUM1=173.249.9.0/24
+#DATURUM2=173.194.222.0/24
+URBAN1=239.255.255.0/24
+URBAN2=35.190.88.0/24
+URBAN3=207.182.151.0/24
+URBAN4=52.8.43.0/24
+URBAN5=198.252.206.0/24
+URBAN6=207.182.142.0/24
+URBAN7=95.143.193.0/24
+URBAN8=146.70.122.0/24
+URBAN9=185.245.80.0/24
+URBAN10=158.58.172.0/24
+URBAN11=13.57.86.0/24
+URBAN12=52.52.210.0/24
+URBAN13=91.193.5.0/24
+URBAN14=209.126.111.0/24
+URBAN15=52.9.101.0/24
+URBAN16=54.219.149.0/24
+URBAN17=54.241.74.0/24
+IHC1=185.87.192.0/24
+CLOUDX1=176.124.192.0/24
+CYBERFORUM=178.208.71.0/24
+#KPHAB=95.181.181.82
+BASTYON=185.148.147.0/24
+FREELRU=185.178.208.0/24
+UNITRADE1=195.191.36.0/24
+UNITRADE2=90.156.201.0/24
+ElectroHobby=109.236.88.75
+CxemNet=78.46.106.238
+Compel=89.208.114.248
+FoxToolkit=24.42.183.19
+
+WEBARCH=207.241.237.0/24
+BITCOINS2=188.114.99.0/24
+VC1=172.67.213.0/24
+FORKLOG1=46.101.169.0/24
+CNEWS1=89.108.90.0/24
+CAMERATAG1=18.66.147.0/24
+CAMERATAG2=13.32.99.0/24
+PINGVIN=89.111.136.74
+LINGVA=172.67.210.15
+BANKOMAT1=104.21.92.0/24
+
+iptables -F
+iptables -X
+iptables -Z
+
+iptables -F -t nat
+iptables -X -t nat
+iptables -Z -t nat
+iptables -F -t mangle
+
+#iptables -P INPUT REJECT
+#iptables -P OUTPUT REJECT
+#iptables -P FORWARD REJECT
+iptables -P INPUT DROP
+iptables -P OUTPUT DROP
+iptables -P FORWARD DROP
+
+
+#iptables -A INPUT -j ACCEPT
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
+iptables -A INPUT -p icmp --icmp-type echo-reply -j ACCEPT
+iptables -A INPUT -p icmp --icmp-type destination-unreachable -j ACCEPT
+iptables -A INPUT -p icmp --icmp-type time-exceeded -j ACCEPT
+#iptables -A INPUT -p icmp -j ACCEPT
+#iptables -A INPUT -p icmp --icmp-type any -j ACCEPT
+iptables -A INPUT -i $LOCINT -s $LOCNET -j ACCEPT
+#iptables -A INPUT -i $TUNINT -j ACCEPT
+iptables -A INPUT -p udp --dport 53 -j ACCEPT
+#iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+#iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+#iptables -A INPUT -p tcp --dport 5577 -j ACCEPT
+#iptables -A INPUT -p tcp --dport 5578 -j ACCEPT
+
+#iptables -A INPUT -p udp --dport 5678 -j DROP
+#iptables -A INPUT -p udp --dport 1194 -j ACCEPT
+#iptables -A INPUT -p udp --dport 60000:61000 -j ACCEPT
+#iptables -A INPUT -s $MOONNET -p tcp --dport 9050 -j ACCEPT
+#iptables -A INPUT -s $MOONNET -p tcp --dport 3389 -j ACCEPT
+#iptables -A INPUT -d $MISSIP -p udp -j ACCEPT
+#iptables -A INPUT -p tcp --dport 49152 -j ACCEPT
+#iptables -A INPUT -p udp --dport 49152 -j ACCEPT
+#iptables -A INPUT -s $SIPNETVOICE -p udp --dport 5000:5100 -j ACCEPT
+#iptables -A INPUT -s $SIPNETVOICE2 -p udp --dport 5000:5010 -j ACCEPT
+#iptables -A INPUT -s 83.219.8.228 -j ACCEPT
+#iptables -A INPUT -j LOG --log-prefix "IIINPUT "
+iptables -A INPUT -d $DLINE1 -p udp -j ACCEPT
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+#iptables -A INPUT -j LOG --log-prefix "INPUT "
+iptables -A INPUT -j REJECT
+#iptables -A INPUT -j DROP
+
+
+iptables -N usr-out
+iptables -A usr-out -p icmp -j ACCEPT
+iptables -A usr-out -p icmp --icmp-type any -j ACCEPT
+iptables -A usr-out -p udp --dport 53 -j ACCEPT
+iptables -A usr-out -d $LOCNET -j ACCEPT
+#iptables -A usr-out -j LOG --log-prefix "OOOOUT "
+#iptables -A usr-out -p udp --sport 1194 -j ACCEPT
+#iptables -A usr-out -p tcp --dport 20 -j ACCEPT
+#iptables -A usr-out -p tcp --dport 8000:8100 -j ACCEPT
+#iptables -A usr-out -p tcp -m multiport --dport 20,21,22,80,443,1240,1755,50000:54000 -j ACCEPT
+#iptables -A usr-out -p udp --dport 123 -j ACCEPT
+#iptables -A usr-out -p udp --dport 177 -j ACCEPT
+#iptables -A usr-out -d 83.219.8.228 -j ACCEPT
+#iptables -A usr-out -p tcp --dport 6000 -j ACCEPT
+#iptables -A usr-out -p tcp --dport 3389:3390 -j ACCEPT
+#iptables -A usr-out -p tcp --dport 1000:65534 -j ACCEPT
+#iptables -A usr-out -p udp --dport 4009 -j ACCEPT
+#iptables -A usr-out -p tcp -d $USKIP --dport 10000:10256 -j ACCEPT
+#iptables -A usr-out -p tcp -d $VPSROBUXIP -j ACCEPT
+#iptables -A usr-out -p tcp -d $VPSROBUXIP --dport 9050 -j ACCEPT
+iptables -A usr-out -p tcp -d $YARUNET5 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $YARUNET6 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $YARUNET7 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $MAILRUNET1 -m multiport --dport 25,80,110,443,465,995 -j ACCEPT
+iptables -A usr-out -p tcp -d $MAILRUNET2 -m multiport --dport 25,80,110,443,465,995 -j ACCEPT
+iptables -A usr-out -p tcp -d $OPENNET -m multiport --dport 80,443 -j ACCEPT
+iptables -A usr-out -p tcp -d $KNUTOVNET1 -m multiport --dport 22,25,80,443,5577 -j ACCEPT
+iptables -A usr-out -p tcp -d $KNUTOVNET2 -m multiport --dport 22,25,80,443,5577 -j ACCEPT
+iptables -A usr-out -p tcp -d $KNUTOVNET3 -m multiport --dport 22,25,80,443,5577 -j ACCEPT
+#iptables -A usr-out -p tcp -d $KNUTOVNET --dport 25 -j ACCEPT
+#iptables -A usr-out -p tcp -d $KNUTOVNET --dport 110 -j ACCEPT
+#iptables -A usr-out -p tcp -d $SANTA -j ACCEPT
+iptables -A usr-out -p tcp -d $VKNET5 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $VKNET6 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $LENTA1 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $BITINFO --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $TELEG1 -m multiport --dport 80,443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $TELEG2 -m multiport --dport 80,443 -j ACCEPT
+iptables -A usr-out -p tcp -d $TELEG2 --dport 8443 -j ACCEPT
+iptables -A usr-out -p tcp -d $TELEG3 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $TELEG4 -m multiport --dport 80,443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $TELEG5 -m multiport --dport 80,443 -j ACCEPT
+iptables -A usr-out -p tcp -d $TELEG6 -m multiport --dport 80,443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $TELEGRA1 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $TELEG7 --dport 2083 -j ACCEPT
+iptables -A usr-out -p tcp -d $TELEG8 --dport 4515 -j ACCEPT
+iptables -A usr-out -p tcp -d $TELEG9 --dport 2083 -j ACCEPT
+iptables -A usr-out -p tcp -d $TELEG10 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $TELEG11 --dport 4515 -j ACCEPT
+iptables -A usr-out -p tcp -d $TELEG12 --dport 853 -j ACCEPT
+iptables -A usr-out -p tcp -d $TELE2PERM1 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $TELE2PERM2 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $TELE2PERM3 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $TELE2PERM4 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $TELE2PERM5 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $TELE2PERM6 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $TELE2PERM7 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $TELE2PERM8 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $AVITO3 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $AVITO5 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $AVITO6 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $TELE2PERM4 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $ENER1 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $ENER2 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $CHERNSETI --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $GISMETEO1 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $GISMETEO2 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $GISMETEO3 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $GISMETEO4 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $GISMETEO1 -m multiport --dport 80,443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $GISMETEO2 -m multiport --dport 80,443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $GISMETEO3 -m multiport --dport 80,443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $GISMETEO4 -m multiport --dport 80,443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $GISMETEO5 -m multiport --dport 80,443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $GISMETEO6 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $GISMETEO7 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $GISMETEO8 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $GISMETEO9 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $LINGVA --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $YAMONEY2 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $YAMONEY5 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $OZON1 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $OZON2 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $OZON3 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $OZON4 --dport 443 -j ACCEPT
+
+#iptables -A usr-out -p tcp -d $GLAVSU -m multiport --dport 80,443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $GDEPOS1 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $GDEPOS2 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $GDEPOS4 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $SOLAR1 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $DLINE1 -m multiport --dport 22,80,443,5577,8443,11222 -j ACCEPT
+iptables -A usr-out -d $DLINE1 -p udp -j ACCEPT
+iptables -A usr-out -p tcp -d $DLINE2 --dport 443 -j ACCEPT
+
+iptables -A usr-out -p tcp -d $GOOGLE7 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $GOOGLE8 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $DUCKGO3 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $DUCKGO4 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $DUCKGO5 --dport 443 -j ACCEPT
+
+#iptables -A usr-out -p tcp -d $YOUTUBE1 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $YOUTUBE2 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $YOUTUBE3 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $YOUTUBE4 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $YOUTUBE5 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $YOUTUBE6 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $YOUTUBE7 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $YOUTUBE8 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $YOUTUBE9 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $YOUTUBE10 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $YOUTUBE11 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $YOUTUBE12 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $YOUTUBE13 --dport 443 -j ACCEPT
+
+iptables -A usr-out -p tcp -d $YOUTUBE14 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $YOUTUBE15 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $YOUTUBE16 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $YOUTUBE17 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $YOUTUBE18 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $YOUTUBE19 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $YOUTUBE20 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $YOUTUBE21 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $YOUTUBE22 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $YOUTUBE23 --dport 443 -j ACCEPT
+
+iptables -A usr-out -p tcp -d $WIKI2 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $TRUDVSEM1 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $TRUDVSEM2 --dport 443 -j ACCEPT
+
+iptables -A usr-out -p tcp -d $HABR1 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $HABR2 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $HABR3 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $HABR4 --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $HABR5 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $HABR6 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $HABR7 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $HABR8 --dport 443 -j ACCEPT
+iptables -A usr-out -p tcp -d $HABR9 --dport 443 -j ACCEPT
+
+iptables -A usr-out -p tcp -d $BANKOMAT1 --dport 443 -j ACCEPT
+
+
+iptables -A usr-out -p tcp -d $PINGVIN --dport 443 -j ACCEPT
+#iptables -A usr-out -p tcp -d $MAILRUNET --dport 25 -j ACCEPT
+#iptables -A usr-out -p tcp -d $MAILRUNET --dport 110 -j ACCEPT
+#iptables -A usr-out -p tcp -d $MAILRUNET --dport 2041:2042 -j ACCEPT
+#iptables -A usr-out -p tcp -d $YARUNET --dport 25 -j ACCEPT
+#iptables -A usr-out -p tcp -d $YARUNET --dport 110 -j ACCEPT
+#iptables -A usr-out -p tcp -d $PERMRUNET --dport 25 -j ACCEPT
+#iptables -A usr-out -p tcp -d $PERMRUNET --dport 110 -j ACCEPT
+#iptables -A usr-out -p tcp -d $POSTBANKIP --dport 7011 -j ACCEPT
+#iptables -A usr-out -p tcp -d $POSTBANKIP --dport 9091 -j ACCEPT
+#iptables -A usr-out -p tcp -d $ICQNET1 --dport 5190 -j ACCEPT
+#iptables -A usr-out -p tcp -d $ICQNET2 --dport 5190 -j ACCEPT
+#iptables -A usr-out -p tcp --dport 10000:10256 -j ACCEPT
+iptables -A usr-out -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A usr-out -p udp --dport 123 -j REJECT
+iptables -A usr-out -j LOG --log-prefix "OUTEXT "
+iptables -A usr-out -j REJECT
+#iptables -A usr-out -j DROP
+
+
+#iptables -A OUTPUT -j LOG --log-prefix "OUTPUT "
+#iptables -A OUTPUT -j ACCEPT
+iptables -A OUTPUT -o lo -j ACCEPT
+#iptables -A OUTPUT -o $TUNINT -j ACCEPT
+#iptables -A OUTPUT -d 192.168.0.200 -j ACCEPT
+iptables -A OUTPUT -o $LOCINT -d $LOCNET -j ACCEPT
+#iptables -A OUTPUT -d $SIPNETVOICE -p udp --sport 5000:5100 -j ACCEPT
+#iptables -A OUTPUT -d $SIPNETVOICE2 -p udp --sport 5000:5010 -j ACCEPT
+#iptables -A OUTPUT -d $SIPNETGATE -p udp --dport 5060 -j ACCEPT
+#iptables -A OUTPUT -d $SIPNETSTUN -p tcp --dport 3478 -j ACCEPT
+#iptables -A OUTPUT -o $EXTINT -j usr-out
+iptables -A OUTPUT -p udp --sport 53 --dport 1024:65535 -j ACCEPT
+iptables -A OUTPUT -j usr-out
+#iptables -A OUTPUT -d $MISSIP -p udp --dport 5353 -j ACCEPT
+iptables -A OUTPUT -j LOG --log-prefix "OUTPUT "
+iptables -A OUTPUT -j REJECT
+#iptables -A OUTPUT -j DROP
+
+#iptables -A FORWARD -j ACCEPT
+#iptables -A FORWARD -j LOG --log-prefix "FORWARD "
+#iptables -A FORWARD -p tcp --dport 5577 -j LOG --log-prefix "PANFORD "
+#iptables -A FORWARD -o $TUNINT -p tcp --dport 5577 -j ACCEPT
+#iptables -A FORWARD -i $EXTINT -o $TUNINT -p tcp --dport 5577 -j LOG --log-prefix "PANFORD "
+#iptables -A FORWARD -i $EXTINT -o $TUNINT -p tcp --dport 5577 -j ACCEPT
+#iptables -A FORWARD -i $LOCINT -o $EXTINT -s 10.59.10.29 -j usr-out
+
+#iptables -A FORWARD -i $LOCINT -o $EXTINT -j usr-out
+
+#iptables -t nat -A POSTROUTING -o $TUNINT -p tcp -m tcp --dport 5577 -j SNAT --to-source 10.8.0.1
+#iptables -A FORWARD -i $EXTINT -o $LOCINT -m state --state ESTABLISHED,RELATED -j ACCEPT
+#iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A FORWARD -j LOG --log-prefix "FORWARD "
+iptables -A FORWARD -j REJECT
+#iptables -A FORWARD -j DROP
+
+#iptables -t nat -A PREROUTING -p tcp -m tcp --dport 80 -d 195.82.146.120/30 -j DNAT --to-destination 163.172.167.207:3128
+
+#iptables -t nat -A PREROUTING -d $EXTIP -p tcp --dport 5578 -j DNAT --to-destination $MOONTUNIP:5577
+#iptables -t nat -A PREROUTING -i $EXTINT -p tcp --dport 5578 -j DNAT --to-destination $MOONTUNIP:5577
+#iptables -t nat -A POSTROUTING ! -s $TUNNET -d $TUNNET -o $TUNINT -j MASQUERADE
+#iptables -t nat -A POSTROUTING -o $TUNINT -p tcp --dport 5577 -j SNAT --to-source 10.8.0.1
+#iptables -t nat -A POSTROUTING -s $MOONTUNIP -p tcp --sport 5577 -j SNAT --to-source $EXTIP
+
+##iptables -t nat -A PREROUTING -s !10.59.10.0/24 -d 62.16.50.56
+#iptables -t nat -A POSTROUTING -o $EXTINT -s $TUNNET -j SNAT --to-source $EXTIP
+#iptables -t nat -A POSTROUTING -o $EXTINT -s $TUNNET -d ! $TUNNET -j SNAT --to-source $EXTIP
+#iptables -t nat -A POSTROUTING -o $EXTINT -s $LOCNET -d ! $LOCNET -j SNAT --to-source $EXTIP
+#iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o $EXTINT -j MASQUERADE
+#iptables -t nat -A POSTROUTING -o $EXTINT -s $LOCNET ! -d $LOCNET -j MASQUERADE
+#-I FORWARD -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+#iptables -t nat -A POSTROUTING -o $TUNINT -p tcp -m tcp --dport 5577 -j SNAT --to-source 10.8.0.1
+#iptables -t nat -A POSTROUTING -o $EXTINT -s $LOCNET ! -d $LOCNET -j SNAT --to-source 10.40.255.159
+
+#echo "1" > /proc/sys/net/ipv4/ip_forward
+echo "bbr" > /proc/sys/net/ipv4/tcp_congestion_control
+

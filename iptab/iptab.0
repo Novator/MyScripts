@@ -1,0 +1,64 @@
+#!/bin/sh
+
+date
+
+modprobe iptable_nat
+modprobe ip_conntrack_ftp
+modprobe ip_nat_ftp
+
+#EXTINT=ens3
+#EXTINT=wlan0
+#EXTINT=ppp0
+EXTINT=ppp0
+LOCINT=enp2s0
+#TUNINT=tun0
+#LOCINT=wlan0
+#EXTIP=185.111.219.236
+#ADMINIP=10.59.10.200
+#LOCNET=10.59.10.0/23
+LOCNET=192.168.0.0/24
+#TUNNET=10.8.0.0/24
+#MOONNET=176.59.0.0/16
+#VPSROBUXIP=185.111.219.236
+#MOONTUNIP=10.8.0.6
+
+MAILRUNET=94.100.177.0/16
+YARUNET=213.180.204.0/24
+PERMRUNET=195.222.130.0/24
+POSTBANKIP=212.120.162.37
+KNUTOVNET=78.47.38.242
+SANTA=78.47.38.238
+DOBROHOST=89.208.34.145
+SIPNETGATE=212.53.40.40
+SIPNETSTUN=212.53.35.244
+SIPNETVOICE=212.53.0.0/16
+#SIPNETVOICE1=212.53.35.0/24
+#SIPNETVOICE2=212.53.40.0/24
+SIPNET2=212.53.0.0/16
+USKIP=90.151.211.93
+SKYPENET=94.50.0.0/16
+MISSIP=224.0.0.251
+ICQNET1=64.12.0.0/16
+ICQNET2=205.188.0.0/16
+
+iptables -F
+iptables -X
+iptables -Z
+
+iptables -F -t nat
+iptables -X -t nat
+iptables -Z -t nat
+iptables -F -t mangle
+
+iptables -P INPUT ACCEPT
+iptables -P OUTPUT ACCEPT
+#iptables -P FORWARD DROP
+iptables -P FORWARD ACCEPT
+
+
+echo "1" > /proc/sys/net/ipv4/ip_forward
+
+#echo "65" > /proc/sys/net/ipv4/ip_default_ttl
+
+#sysctl -w net.ipv4.ip_default_ttl=65
+

@@ -1,0 +1,6 @@
+https://github.com/celluloid/celluloid-dns
+https://github.com/socketry/rubydns
+https://github.com/socketry/async-dns
+https://github.com/alexdalitz/dnsruby
+https://github.com/ruby-dns/net-dns
+https://github.com/mocktools/ruby-dns-mock

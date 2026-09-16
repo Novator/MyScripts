@@ -1,0 +1,7 @@
+#!/bin/sh
+
+ITEMS="$2"
+[ $ITEMS ] || ITEMS="10"
+#exec python3.9 "/usr/bin/yt_dlp/__main__.py" --flat-playlist --playlist-end $ITEMS --print title --print " %(duration_string)s %(id)s" "$1"
+yt-dlp --flat-playlist --playlist-end $ITEMS --print title --print " %(duration_string)s %(id)s" "$1"
+
