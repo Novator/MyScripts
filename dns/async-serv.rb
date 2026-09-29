@@ -188,6 +188,7 @@ class MyDnsServer < Async::DNS::Server
     and (not resource_class==Resolv::DNS::Resource::IN::HTTPS))
       puts('====='+Time.now.strftime('%H:%M:%S')+' ['+name.to_s+'] '+resource_class.to_s)
       addr = LocalCache[name]
+      calced = false
       #if true #external_domain?(name)
       if addr
         puts(' cache addr='+addr.to_s+' ('+name+')')
@@ -201,10 +202,10 @@ class MyDnsServer < Async::DNS::Server
             addr = '108.177.14.136' #'108.177.14.190' 64.233.164.91 74.125.205.190 64.233.162.136 142.250.150.91
           elsif name[0,2]=='rr'
             num = name[2,2]
-            p num
+            #p num
             #num = num[0,1] if num[1]=='-'
             num.gsub!('-','')
-            p num
+            #p num
             num = num.to_i
             tail = name[6..-1]
             puts '  tail='+tail.inspect+'  num='+num.inspect
@@ -236,6 +237,9 @@ class MyDnsServer < Async::DNS::Server
             elsif tail=='sn-n8v7kn7k.googlevideo.com'
               #173.194.177.21 (rr3---sn-n8v7kn7k.googlevideo.com)
               addr = '173.194.177.'+(18+num).to_s
+            end
+            if addr
+              calced = true
             else
               puts '  Unknown tail. Resolving1..'
               addr = get_addr_from_resolver(transaction, @resolver1)
@@ -269,7 +273,11 @@ class MyDnsServer < Async::DNS::Server
         #response = transaction.passthrough(@resolver2, name, resource_class)
         if addr
           addr_s = addr.to_s
-          puts(' found addr='+addr_s+' ('+name+')')
+          if calced
+            puts(' calced addr='+addr_s+' ('+name+')')
+          else
+            puts(' found addr='+addr_s+' ('+name+')')
+          end
           LocalCache[name] = addr_s
         end
       end
