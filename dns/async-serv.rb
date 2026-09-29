@@ -45,7 +45,8 @@ EXTERNAL_LIST = [
 'fbcdn.net',
 'ytimg.com',
 'bestchange.net',
-'bestchange.ru'
+'bestchange.ru',
+'wikipedia.org'
 ]
 
 def domain_in_list?(name, list)
@@ -196,19 +197,53 @@ class MyDnsServer < Async::DNS::Server
         #p '00.2'
         if domain2=='googlevideo.com'
           p '***YT-VIDEO!'
-          #if name=='manifest.googlevideo.com'
-          #  addr = '108.177.14.136' #'108.177.14.190' 64.233.164.91 74.125.205.190
-          #else
-          #  addr = '176.59.223.12' #rr1---sn-uxaxufvg0-n8me.googlevideo.com
-          #176.59.223.13 (rr2---sn-uxaxufvg0-n8me.googlevideo.com
-          #176.59.223.14 (rr3---sn-uxaxufvg0-n8me.googlevideo.com
-          #74.125.100.105 (rr4---sn-5hnekn7z.googlevideo.com
-          #74.125.100.164 (rr4---sn-oj5hn5-5v.googlevideo.com
-          #173.194.151.34 (rr16---sn-n8v7snl7.googlevideo.com
-          #173.194.163.225 (rr15---sn-n8v7kn7l.googlevideo.com
-          #173.194.178.223 (rr13---sn-n8v7znly.googlevideo.com)
-
-          addr = get_addr_from_resolver(transaction, @resolver1)
+          if name=='manifest.googlevideo.com'
+            addr = '108.177.14.136' #'108.177.14.190' 64.233.164.91 74.125.205.190 64.233.162.136 142.250.150.91
+          elsif name[0,2]=='rr'
+            num = name[2,2]
+            p num
+            #num = num[0,1] if num[1]=='-'
+            num.gsub!('-','')
+            p num
+            num = num.to_i
+            tail = name[6..-1]
+            puts '  tail='+tail.inspect+'  num='+num.inspect
+            if tail=='sn-uxaxufvg0-n8me.googlevideo.com'
+              #176.59.223.12 (rr1---sn-uxaxufvg0-n8me.googlevideo.com
+              #176.59.223.13 (rr2---sn-uxaxufvg0-n8me.googlevideo.com
+              #176.59.223.14 (rr3---sn-uxaxufvg0-n8me.googlevideo.com
+              #176.59.223.15 (rr4---sn-uxaxufvg0-n8me.googlevideo.com
+              #176.59.223.17 (rr6---sn-uxaxufvg0-n8me.googlevideo.com
+              addr = '176.59.223.'+(11+num).to_s
+            elsif tail=='sn-n8v7znly.googlevideo.com'
+              #173.194.178.223 (rr13---sn-n8v7znly.googlevideo.com)
+              addr = '173.194.178.'+(210+num).to_s
+            elsif tail=='sn-n8v7kn7l.googlevideo.com'
+              #173.194.163.225 (rr15---sn-n8v7kn7l.googlevideo.com
+              addr = '173.194.163.'+(210+num).to_s
+            elsif tail=='sn-5hne6n6l.googlevideo.com'
+              #74.125.8.170 (rr5---sn-5hne6n6l.googlevideo.com
+              addr = '74.125.8.'+(165+num).to_s
+            elsif tail=='sn-5hnekn7z.googlevideo.com'
+              #74.125.100.105 (rr4---sn-5hnekn7z.googlevideo.com
+              addr = '74.125.100.'+(101+num).to_s
+            elsif tail=='sn-oj5hn5-5v.googlevideo.com'
+              #74.125.100.164 (rr4---sn-oj5hn5-5v.googlevideo.com
+              addr = '74.125.100.'+(160+num).to_s
+            elsif tail=='sn-n8v7snl7.googlevideo.com'
+              #173.194.151.34 (rr16---sn-n8v7snl7.googlevideo.com
+              addr = '173.194.151.'+(18+num).to_s
+            elsif tail=='sn-n8v7kn7k.googlevideo.com'
+              #173.194.177.21 (rr3---sn-n8v7kn7k.googlevideo.com)
+              addr = '173.194.177.'+(18+num).to_s
+            else
+              puts '  Unknown tail. Resolving1..'
+              addr = get_addr_from_resolver(transaction, @resolver1)
+            end
+          else
+            puts '  Unknown prefix. Resolving1..'
+            addr = get_addr_from_resolver(transaction, @resolver1)
+          end
         elsif domain_in_list?(domain2, EXTERNAL_LIST)
           p '+++EXTERNAL!'
           addr = get_addr_from_resolver(transaction, @resolver1)
