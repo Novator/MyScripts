@@ -188,10 +188,10 @@ class MyDnsServer < Async::DNS::Server
     and (not resource_class==Resolv::DNS::Resource::IN::HTTPS))
       puts('====='+Time.now.strftime('%H:%M:%S')+' ['+name.to_s+'] '+resource_class.to_s)
       addr = LocalCache[name]
-      calced = false
+      tabled = false
       #if true #external_domain?(name)
       if addr
-        puts(' cache addr='+addr.to_s+' ('+name+')')
+        puts(' cached addr='+addr.to_s+' ('+name+')')
       else
         #p '00.1'
         domain2 = get_doman_of_depth(name, 2)
@@ -199,49 +199,69 @@ class MyDnsServer < Async::DNS::Server
         if domain2=='googlevideo.com'
           p '***YT-VIDEO!'
           if name=='manifest.googlevideo.com'
-            addr = '108.177.14.136' #'108.177.14.190' 64.233.164.91 74.125.205.190 64.233.162.136 142.250.150.91
+            #'108.177.14.190' 64.233.164.91 74.125.205.190 64.233.162.136 142.250.150.91 209.85.233.91
+            addr = '209.85.233.91'
+            tabled = true
+            #addr = get_addr_from_resolver(transaction, @resolver1)
           elsif name[0,2]=='rr'
-            num = name[2,2]
+            num = name[2,3]
             #p num
             #num = num[0,1] if num[1]=='-'
             num.gsub!('-','')
             #p num
+            #tail = name[6..-1]
+            suffix = name[5+num.size, 11]
             num = num.to_i
-            tail = name[6..-1]
-            puts '  tail='+tail.inspect+'  num='+num.inspect
-            if tail=='sn-uxaxufvg0-n8me.googlevideo.com'
+            #puts '  tail='+tail.inspect+'  num='+num.inspect
+            puts '  suffix='+suffix.inspect+'  num='+num.inspect
+            if suffix=='sn-uxaxufvg'
               #176.59.223.12 (rr1---sn-uxaxufvg0-n8me.googlevideo.com
               #176.59.223.13 (rr2---sn-uxaxufvg0-n8me.googlevideo.com
               #176.59.223.14 (rr3---sn-uxaxufvg0-n8me.googlevideo.com
               #176.59.223.15 (rr4---sn-uxaxufvg0-n8me.googlevideo.com
               #176.59.223.17 (rr6---sn-uxaxufvg0-n8me.googlevideo.com
               addr = '176.59.223.'+(11+num).to_s
-            elsif tail=='sn-n8v7znly.googlevideo.com'
+            elsif suffix=='sn-n8v7znly'
               #173.194.178.223 (rr13---sn-n8v7znly.googlevideo.com)
               addr = '173.194.178.'+(210+num).to_s
-            elsif tail=='sn-n8v7kn7l.googlevideo.com'
+            elsif suffix=='sn-n8v7kn7l'
               #173.194.163.225 (rr15---sn-n8v7kn7l.googlevideo.com
               addr = '173.194.163.'+(210+num).to_s
-            elsif tail=='sn-5hne6n6l.googlevideo.com'
+            elsif suffix=='sn-5hne6n6l'
               #74.125.8.170 (rr5---sn-5hne6n6l.googlevideo.com
               addr = '74.125.8.'+(165+num).to_s
-            elsif tail=='sn-5hnekn7z.googlevideo.com'
+            elsif suffix=='sn-5hnekn7z'
               #74.125.100.105 (rr4---sn-5hnekn7z.googlevideo.com
               addr = '74.125.100.'+(101+num).to_s
-            elsif tail=='sn-oj5hn5-5v.googlevideo.com'
+            elsif suffix=='sn-oj5hn5-5'
               #74.125.100.164 (rr4---sn-oj5hn5-5v.googlevideo.com
               addr = '74.125.100.'+(160+num).to_s
-            elsif tail=='sn-n8v7snl7.googlevideo.com'
+            elsif suffix=='sn-n8v7snl7'
               #173.194.151.34 (rr16---sn-n8v7snl7.googlevideo.com
               addr = '173.194.151.'+(18+num).to_s
-            elsif tail=='sn-n8v7kn7k.googlevideo.com'
+            elsif suffix=='sn-n8v7kn7k'
               #173.194.177.21 (rr3---sn-n8v7kn7k.googlevideo.com)
               addr = '173.194.177.'+(18+num).to_s
+            elsif suffix=='sn-n8v7znsd'
+              #173.194.181.91 (rr9---sn-n8v7znsd.googlevideo.com
+              addr = '173.194.181.'+(82+num).to_s
+            elsif suffix=='sn-n8v7znsr'
+              #173.194.181.221 (rr11---sn-n8v7znsr.googlevideo.com
+              addr = '173.194.181.'+(210+num).to_s
+            elsif suffix=='sn-n8v7kn7s'
+              #173.194.176.32 (rr14---sn-n8v7kn7s.googlevideo.com
+              addr = '173.194.176.'+(18+num).to_s
+            elsif suffix=='sn-n8v7kn7d'
+              #173.194.176.222 (rr12---sn-n8v7kn7d.googlevideo.com
+              addr = '173.194.176.'+(210+num).to_s
+            elsif suffix=='sn-5hne6nzy'
+              #172.217.132.166 (rr1---sn-5hne6nzy.googlevideo.com
+              addr = '172.217.132.'+(165+num).to_s
             end
             if addr
-              calced = true
+              tabled = true
             else
-              puts '  Unknown tail. Resolving1..'
+              puts '  Unknown suffix. Resolving1..'
               addr = get_addr_from_resolver(transaction, @resolver1)
             end
           else
@@ -273,10 +293,10 @@ class MyDnsServer < Async::DNS::Server
         #response = transaction.passthrough(@resolver2, name, resource_class)
         if addr
           addr_s = addr.to_s
-          if calced
-            puts(' calced addr='+addr_s+' ('+name+')')
+          if tabled
+            puts(' tabled addr='+addr_s+' ('+name+')')
           else
-            puts(' found addr='+addr_s+' ('+name+')')
+            puts(' resolved addr='+addr_s+' ('+name+')')
           end
           LocalCache[name] = addr_s
         end
